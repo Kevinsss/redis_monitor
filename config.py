@@ -34,13 +34,6 @@ STORE_MONGODB = '''
 }   
 '''
 
-# store redis info to redis
-STORE_REDIS = '''
-{
-    "host": "127.0.0.1",
-    "port": 6666
-}   
-'''
 
 # store redis info to mysql
 STORE_MYSQL = '''
