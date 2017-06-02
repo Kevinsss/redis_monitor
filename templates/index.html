@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN"></html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/static/redis.ico">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/g2.js"></script>
+    <script src="../static/js/monitor.js"></script>
+    <title>Redis Monitor</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <p class="navbar-brand "><span style="color:white;">Redis Monitor</span></p>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="nav navbar-nav navbar-right">
+                <label>
+                    <select id="ip" class="form-control input-lg">
+                    </select>
+                </label>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+<hr/>
+<div>
+
+    <div>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <p class="navbar-brand">Basic Info</p>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="row">
+            <div class="col-xs-4">
+                <ul class="list-group">
+                    <li id="uptime" class="list-group-item list-group-item-info"><strong>Uptime: xxx</strong></li>
+                    <li id="maxMemory" class="list-group-item list-group-item-info"><strong>Max Memory: xxx</strong></li>
+                    <li id="connectedClients" class="list-group-item list-group-item-info"><strong>Connected Clients: xxx</strong></li>
+                    <li id="usedCpuSys" class="list-group-item list-group-item-info"><strong>Used CPU Sys: xxx</strong></li>
+                    <li id="usedCpuUser" class="list-group-item list-group-item-info"><strong>Used CPU User: xxx</strong></li>
+                </ul>
+
+            </div>
+            <div class="col-xs-4">
+                <ul class="list-group">
+                    <li id="usedMemory" class="list-group-item list-group-item-info"><strong>Used Memory: xxx</strong></li>
+                    <li id="usedMemoryRss" class="list-group-item list-group-item-info"><strong>Used Memory Rss: xxx</strong></li>
+                    <li id="usedMemoryPeak" class="list-group-item list-group-item-info"><strong>Used Memory Peak: xxx</strong></li>
+                    <li id="memRatio" class="list-group-item list-group-item-info"><strong>Mem Fragmentation Ratio: xxx</strong></li>
+                    <li class="list-group-item list-group-item-info"><strong>......</strong></li>
+                </ul>
+            </div>
+            <div class="col-xs-4">
+                <ul class="list-group">
+                    <li id="totalConnectionReceived" class="list-group-item list-group-item-info"><strong>Total Connection Received: xxx</strong></li>
+                    <li id="totalCommadsProcessed" class="list-group-item list-group-item-info"><strong>Total Commands Processed: xxx</strong></li>
+                    <li id="expiredKeys" class="list-group-item list-group-item-info"><strong>Expired Keys: xxx</strong></li>
+                    <li class="list-group-item list-group-item-info"><strong>......</strong></li>
+                    <li class="list-group-item list-group-item-info"><strong>......</strong></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <hr/>
+    <!-- Command Count Div-->
+    <div>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <p class="navbar-brand">Command Count</p>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="nav navbar-nav navbar-right">
+                    <label>
+                        <select id="commandlast" class="form-control">
+                            <option value="1">Last 1 hour</option>
+                            <option value="2">Last 2 hours</option>
+                            <option value="3">Last 3 hours</option>
+                            <option value="24">Last 1 day</option>
+                            <option value="48">Last 2 days</option>
+                            <option value="72">Last 3 days</option>
+                        </select>
+                    </label>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="c1"></div>
+    </div>
+    <hr/>
+    <!-- Memory Count Div-->
+    <div>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <p class="navbar-brand">Memroy</p>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="nav navbar-nav navbar-right">
+                    <label>
+                        <select id="memorylast" class="form-control">
+                            <option value="1">Last 1 hour</option>
+                            <option value="2">Last 2 hours</option>
+                            <option value="3">Last 3 hours</option>
+                            <option value="24">Last 1 day</option>
+                            <option value="48">Last 2 days</option>
+                            <option value="72">Last 3 days</option>
+                        </select>
+                    </label>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="c2"></div>
+    </div>
+    <hr/>
+</div>
+
+<script>
+
+    var commandChart = new G2.Chart({
+        id: 'c1',
+        forceFit: true,
+        height: 250
+
+    });
+    createCommandChart(commandChart);
+
+    var memoryChart = new G2.Chart({
+        id: 'c2',
+        forceFit: true,
+        syncXYScales: true,
+        height: 250
+    });
+
+    createMemoryChart(memoryChart);
+
+
+</script>
+<script src="../static/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,54 @@
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`redis_monitor` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `redis_monitor`;
+
+/*Table structure for table `command_count` */
+
+DROP TABLE IF EXISTS `command_count`;
+
+CREATE TABLE `command_count` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `optime` int(11) DEFAULT NULL,
+  `cmdcount` int(11) DEFAULT NULL,
+  `ip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1197 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `info` */
+
+DROP TABLE IF EXISTS `info`;
+
+CREATE TABLE `info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `optime` varchar(50) DEFAULT NULL,
+  `info` varchar(500) DEFAULT NULL,
+  `ip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `memory_count` */
+
+DROP TABLE IF EXISTS `memory_count`;
+
+CREATE TABLE `memory_count` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `optime` int(11) DEFAULT NULL,
+  `used_memory` int(11) DEFAULT NULL,
+  `peak_memory` int(11) DEFAULT NULL,
+  `ip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=504 DEFAULT CHARSET=utf8;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
