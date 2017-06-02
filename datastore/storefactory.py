@@ -1,7 +1,6 @@
 import config
-import redisstore
 import mongodbstore
-from datastore import mysqlstore
+#from datastore import mysqlstore
 
 
 class RedisDataStoreFactory(object):

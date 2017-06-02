@@ -1,5 +1,6 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 import os
-
 import pymongo
 from flask import Flask, request, render_template, url_for, send_from_directory
 from pymongo import MongoClient
@@ -59,4 +60,4 @@ def get_ip():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

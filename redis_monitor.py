@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 import argparse
 import json
 import threading
@@ -69,20 +71,22 @@ class InfoThread(threading.Thread):
                 # used_memory_peak not available in older versions of redis
                 try:
                     peak_memory = int(redis_info['used_memory_peak'])
+		    max_memory = str(redis_info['maxmemory_human'])
                 except:
                     peak_memory = used_memory
-
+                    max_memory = 'xxx'
+                
                 data_store.set_command_count(optime=optime,cmdcount=total_commands_processed,ip=self.server)
                 data_store.set_memory_count(optime=optime, used_memory=used_memory, peak_memory=peak_memory, ip=self.server)
 
                 info_dict = {'uptime': int(redis_info['uptime_in_seconds']),
-                             'max_memory': str(redis_info['maxmemory_human']),
+                             'max_memory': max_memory,
                              'connnected_clients': str(redis_info['connected_clients']),
                              'used_cpu_sys': str(redis_info['used_cpu_sys']),
                              'used_cpu_user': str(redis_info['used_cpu_user']),
-                             'used_memory': str(redis_info['used_memory_human']),
-                             'used_memory_rss': str(redis_info['used_memory_rss_human']),
-                             'used_memory_peak': str(redis_info['used_memory_peak_human']),
+                             'used_memory': str(redis_info['used_memory']),
+                             'used_memory_rss': str(redis_info['used_memory_rss']),
+                             'used_memory_peak': str(redis_info['used_memory_peak']),
                              'mem_fragmentation_ratio': str(redis_info['mem_fragmentation_ratio']),
                              'total_connection_recevied': str(redis_info['total_connections_received']),
                              'total_commands_processed': str(redis_info['total_commands_processed']),
